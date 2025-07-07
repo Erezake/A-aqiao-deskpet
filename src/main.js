@@ -21,11 +21,17 @@ function createWindow() {
     alwaysOnTop: true,
     resizable: false,
     hasShadow: false,
+    titleBarStyle: 'hidden', // 新增
+    autoHideMenuBar: true,   // 新增
+    focusable: false, // 窗口不可聚焦
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'), // 用 preload 来传值
     }
   });
   mainWindow = win;
+  mainWindow.setAlwaysOnTop(true, "screen-saver"); // 强化置顶逻辑
+  mainWindow.setVisibleOnAllWorkspaces(true);      // 保证桌宠全局显示
+  mainWindow.setMenuBarVisibility(false);          // 保证隐藏菜单栏
   win.setIgnoreMouseEvents(false);
   win.loadFile('src/index.html');
 
